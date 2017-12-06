@@ -1,3 +1,7 @@
+"""
+Runs in DrawBot
+"""
+
 PAGESIZE = 500
 CIRCSIZE = 450
 ANGLE = 144
