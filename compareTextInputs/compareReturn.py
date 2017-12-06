@@ -1,7 +1,7 @@
 """
 --------------------------------------------------------
 --------------------------------------------------------
- Compare 2 return-separated lists (e.g., list of files)
+ Compare 2 return-separated lists
 --------------------------------------------------------
 --------------------------------------------------------
 
@@ -12,32 +12,34 @@ Prior to running the script, remember to change paths & file names.
 difference.txt will be created if no such file exists.
 """
 
-import sys
+import os
 
-with open("/Users/jesentanadi/Desktop/batch2.txt", 'rU') as file1: #.txt file of char set 1
-    charSet1 = file1.readlines() #Returns a list
+os.chdir("/Users/jesentanadi/Desktop/") # remember to change directory
 
-with open("/Users/jesentanadi/Desktop/batch3.txt", 'rU') as file2: #.txt file of char set 2
-    charSet2 = file2.readlines() #Returns a list
+with open("file1.txt", 'rU') as rFile1: #.txt file of char set 1
+    inputList1 = rFile1.readlines() #Returns a list
+
+with open("file2.txt", 'rU') as rFile2: #.txt file of char set 2
+    inputList2 = rFile2.readlines() #Returns a list
 
 #Writes result to file (new if file doesn't exist)
-sys.stdout = open('/Users/jesentanadi/Desktop/difference.txt', 'w+')
+with open("difference.txt", "w") as wFile:
 
-#Removes extra line breaks and inserts list back into the same variable ("list comprehension")
-charSet1 = [item.replace("\n", "") for item in charSet1] 
-charSet2 = [item.replace("\n", "") for item in charSet2]
+    #Removes extra line breaks and inserts list back into the same variable ("list comprehension")
+    inputList1 = [item.replace("\n", "") for item in inputList1]
+    inputList2 = [item.replace("\n", "") for item in inputList2]
 
-#Goes through 1st list & compares with 2nd list
-print "In 1st char set:"
-for char in charSet1:
-	if char not in charSet2:
-		print char
+    #Goes through 1st list & compares with 2nd list
+    wFile.write("In 1st char set:\n")
+    for item in inputList1:
+        if item not in inputList2:
+            wFile.write(item + "\n")
 
-#Goes through 2nd list & compares with 1st list
-print "\nIn 2nd char set:" 
-for char in charSet2:
-	if char not in charSet1:
-		print char
+    #Goes through 2nd list & compares with 1st list
+    wFile.write("\n\nIn 2nd char set:\n")
+    for item in inputList2:
+        if item not in inputList1:
+            wFile.write(item + "\n")
 
 """
 ---------------
