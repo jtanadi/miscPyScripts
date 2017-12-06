@@ -1,8 +1,9 @@
 import os
 
-os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays/z-JT/TL")
+# Remember to change directory
+os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays/z-JT/")
 
-with open("_TL_VS.txt", 'rU') as readFile: #.txt file
+with open("_TL_NC.txt", 'rU') as readFile: #.txt file
     inputTextList = readFile.readlines() #Returns a list
 
 inputTextList = [text for text in inputTextList if text != "\n"]
@@ -10,20 +11,25 @@ inputTextList = [text for text in inputTextList if text != "\n"]
 codeIndex = [index for index, entry in enumerate(inputTextList) if "_" in entry]
 codeIndex.append(len(inputTextList))
 
-contentDict = {inputTextList[codeIndex[i]].replace("\n", ""): inputTextList[codeIndex[i]+1:codeIndex[i+1]] \
+contentDict = {inputTextList[codeIndex[i]].replace("\n", "") : \
+               inputTextList[codeIndex[i]+1:codeIndex[i+1]] \
                for i in range(len(codeIndex)-1)}
 
 def makeFolderName(fileName):
-    if any(n in fileName for n in ["pt", "st", "ti"]):
-        return os.path.join("01-National Chronology", fileName[:7])
+    gallery, exhibit, story = fileName.split("_")
 
-    if "tt" in fileName:
-        return os.path.join("02-Veterans Stories", fileName[:7])
+    if gallery == "TL":
+        if any(n in story for n in ["pt", "st", "ti"]):
+            return "{}/{}_{}/01-National Chronology".format(gallery, gallery, exhibit)
 
-    if "dl" in fileName:
-        return os.path.join("03-Dateline", fileName[:7])
+        elif "tt" in story:
+            return "{}/{}_{}/02-Veterans Stories".format(gallery, gallery, exhibit)
 
-    return fileName[:7]
+        elif "dl" in story:
+            return "{}/{}_{}/03-Dateline".format(gallery, gallery, exhibit)
+
+    return "{}/{}_{}".format(gallery, gallery, exhibit)
+
 
 def makeFolder(folder):
     if os.path.exists(folder):
@@ -33,15 +39,11 @@ def makeFolder(folder):
 
 
 for key in contentDict:
-    folderName = makeFolderName(key)
-    makeFolder(folderName)
+    pathName = makeFolderName(key)
+    makeFolder(str(pathName))
 
-    filePath = os.path.join(folderName, key + ".txt")
+    filePath = os.path.join(pathName, key + ".txt")
 
     with open(filePath, "w") as writeFile:
-        writeFile.write(contentDict[key])
-
-    # sys.stdout = open(filePath, 'w+')
-
-    # for item in contentDict[key]:
-    #     print item
+        for item in contentDict[key]:
+            writeFile.write(item)
