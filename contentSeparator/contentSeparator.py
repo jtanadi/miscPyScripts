@@ -1,7 +1,7 @@
 import os
 
 # Remember to change directory
-os.chdir("/Users/jesentanadi/Desktop/Ohio Test/Script/")
+os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays/z-JT")
 
 with open("_TH.txt", 'rU') as readFile: #.txt file
     inputTextList = readFile.readlines() #Returns a list
@@ -18,17 +18,17 @@ contentDict = {inputTextList[codeIndex[i]].replace("\n", "").split(" ")[0] : \
 def makeFolderName(fileName):
     exhibit, topic, story = fileName.split("_")
 
-    if exhibit == "TH":
-        if "ip" in story:
-            category = "0-Intro"
+    # if exhibit == "TH":
+    #     if "ip" in story:
+    #         category = "0-Intro"
 
-        elif "pt" in story:
-            category = "1-Primary"
+    #     elif "pt" in story:
+    #         category = "1-Primary"
 
-        elif "st" in story:
-            category = "2-Secondary"
+    #     elif "st" in story:
+    #         category = "2-Secondary"
 
-        return "{}/{}/".format(exhibit, category)
+    return "{}/".format(exhibit)
 
     """
     Fix TL version below once folder structure has been decided.
