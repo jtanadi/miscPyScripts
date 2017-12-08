@@ -1,7 +1,7 @@
 import os
 
 # Remember to change directory
-os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays/z-JT")
+os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays")
 
 with open("_TH.txt", 'rU') as readFile: #.txt file
     inputTextList = readFile.readlines() #Returns a list
