@@ -1,16 +1,25 @@
+"""
+Use to rename parsed script files in Combat 1 & Combat 2 to match panel codes
+"""
+
 import os
 
-os.chdir("/Users/jesen/Desktop/tester")
+# Remember to change directory
+os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays/TH/New Folder With Items copy 2")
 
 for f in os.listdir(os.getcwd()):
-    fileName, fileExt = os.path.splitext(f)
+    if f != ".DS_Store":
+        fileName, fileExt = os.path.splitext(f)
 
-    title, course, num = fileName.split("-")
+        exhibit, topic, story = fileName.split("_")
 
-    title = title.strip()
-    course = course.strip()
-    num = num.strip()[1:].zfill(2)
+        if story[2:4] == "01":
+            topic = "EX10A"
 
-    newName = "{}-{}{}".format(num, title, fileExt)
+        elif story[2:4] == "02":
+            topic = "EX10B"
+            story = story.replace("02", "01")
 
-    os.rename(f, newName)
+        newName = "{}_{}_{}{}".format(exhibit, topic, story, fileExt)
+
+        os.rename(f, newName)
