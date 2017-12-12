@@ -1,9 +1,9 @@
 import os
 
 # Remember to change directory
-os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays")
+os.chdir("/Users/jesentanadi/Desktop/Ohio Test/Script")
 
-with open("_TH.txt", 'rU') as readFile: #.txt file
+with open("_TL_V.txt", 'rU') as readFile: #.txt file
     inputTextList = readFile.readlines() #Returns a list
 
 inputTextList = [text for text in inputTextList if text != "\n"]
@@ -16,32 +16,20 @@ contentDict = {inputTextList[codeIndex[i]].replace("\n", "").split(" ")[0] : \
                for i in range(len(codeIndex)-1)}
 
 def makeFolderName(fileName):
+    """
+    Function to make folders based on file name
+    Returns a path to be used by makeFolder() function
+
+    Currently a little inconsistent with how it treats exhibits
+    """
+
     exhibit, topic, story = fileName.split("_")
 
-    # if exhibit == "TH":
-    #     if "ip" in story:
-    #         category = "0-Intro"
+    if exhibit == "TH":
+        return "{}/".format(exhibit)
 
-    #     elif "pt" in story:
-    #         category = "1-Primary"
-
-    #     elif "st" in story:
-    #         category = "2-Secondary"
-
-    return "{}/".format(exhibit)
-
-    """
-    Fix TL version below once folder structure has been decided.
-    """
-    # if gallery == "TL":
-    #     if any(n in story for n in ["pt", "st", "ti"]):
-    #         return "{}/{}_{}/01-National Chronology".format(gallery, gallery, exhibit)
-
-    #     elif "tt" in story:
-    #         return "{}/{}_{}/02-Veterans Stories".format(gallery, gallery, exhibit)
-
-    #     elif "dl" in story:
-    #         return "{}/{}_{}/03-Dateline".format(gallery, gallery, exhibit)
+    elif exhibit == "TL":
+        return "{}/{}/".format(exhibit, topic.upper())
 
 
 def makeFolder(folder):
@@ -49,7 +37,6 @@ def makeFolder(folder):
         pass
     else:
         os.makedirs(folder)
-
 
 for key in contentDict:
 
@@ -62,10 +49,10 @@ for key in contentDict:
     titlePath = os.path.join(pathName, key.upper() + "-T.txt")
     bodyPath = os.path.join(pathName, key.upper() + "-B.txt")
 
-    with open(titlePath, "w") as writeTitleFile:
+    with open(titlePath, "w") as wTitleFile:
         for item in title:
-            writeTitleFile.write(item)
+            wTitleFile.write(item)
 
-    with open(bodyPath, "w") as writeBodyFile:
+    with open(bodyPath, "w") as wBodyFile:
         for item in body:
-            writeBodyFile.write(item)
+            wBodyFile.write(item)
