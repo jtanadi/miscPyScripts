@@ -5,7 +5,7 @@ Use to rename parsed script files in Combat 1 & Combat 2 to match panel codes
 import os
 
 # Remember to change directory
-os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays/TH/New Folder With Items copy 2")
+os.chdir("/Users/jesentanadi/Desktop/Ohio Test/Image/-")
 
 for f in os.listdir(os.getcwd()):
     if f != ".DS_Store":

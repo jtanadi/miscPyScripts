@@ -16,10 +16,10 @@ import os
 
 os.chdir("/Users/jesentanadi/Desktop/") # remember to change directory
 
-with open("file1.txt", 'rU') as rFile1: #.txt file of char set 1
+with open("jpg.txt", 'rU') as rFile1: #.txt file of char set 1
     inputList1 = rFile1.readlines() #Returns a list
 
-with open("file2.txt", 'rU') as rFile2: #.txt file of char set 2
+with open("tif.txt", 'rU') as rFile2: #.txt file of char set 2
     inputList2 = rFile2.readlines() #Returns a list
 
 #Writes result to file (new if file doesn't exist)

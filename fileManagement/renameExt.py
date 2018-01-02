@@ -5,7 +5,7 @@ Use to rename extensions for uniformity in a dir. Doesn't reformat file to new f
 import os
 
 # Remember to change directory
-os.chdir("/Users/jesentanadi/Desktop/Ohio Test/Image/-")
+os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Images/HIGH RESOLUTION IMAGES/NEW HIGH RES/New Folder With Items/new TIFF")
 
 for f in os.listdir(os.getcwd()):
     if f != ".DS_Store":
