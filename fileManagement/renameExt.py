@@ -1,5 +1,5 @@
 """
-Use to rename parsed script files in Combat 1 & Combat 2 to match panel codes
+Use to rename extensions for uniformity in a dir. Doesn't reformat file to new file type.
 """
 
 import os
