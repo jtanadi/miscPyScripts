@@ -1,4 +1,5 @@
 import os
+import collections as c
 
 # Remember to change directory
 os.chdir("/Volumes/3Projects/OVMM-OhioVetMem/02_CONTENT/Exhibit Script_FINAL/Thematic Displays/")
@@ -12,23 +13,24 @@ codeIndex = [index for index, entry in enumerate(inputTextList) if "_" in entry]
 codeIndex.append(len(inputTextList))
 
 contentDict = {inputTextList[codeIndex[i]].replace("\n", "").split(" ")[0] : inputTextList[codeIndex[i]+2:codeIndex[i+1]] for i in range(len(codeIndex)-1)}
+contentDict = c.OrderedDict(sorted(contentDict.items()))
 
 def combineCaptions():
     """
     Function to combine different captions across the same exhibit & topic
     """
 
-    keyMemory = " "
-    exhibitTopic = " "
+    exhibitTopic, keyMemory = " ", " "
     newContentDict = {}
 
     for key in contentDict:
+        
         if exhibitTopic in key:
             newContentDict[exhibitTopic] = contentDict[key] + contentDict[keyMemory]
 
-        exhibit, topic, cap = key.split("_")
         keyMemory = key
 
+        exhibit, topic, cap = key.split("_")
         exhibitTopic = "{}_{}".format(exhibit, topic)
 
     return newContentDict
@@ -61,13 +63,11 @@ def makeFolder(folder):
 combinedContent = combineCaptions()
 
 for key in combinedContent:
-    body = combinedContent[key]
-
     pathName = makeFolderName(key)
     makeFolder(str(pathName))
 
     bodyPath = os.path.join(pathName, key.upper() + ".txt")
 
     with open(bodyPath, "w") as wBodyFile:
-        for item in body:
-            wBodyFile.write(item)
+        for item in combinedContent[key]:
+            wBodyFile.write(item + "\n")
