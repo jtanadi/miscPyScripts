@@ -77,7 +77,7 @@ for key in combinedContent:
     pathName = makeFolderName(key)
     makeFolder(str(pathName))
 
-    bodyPath = os.path.join(pathName, key.upper() + ".txt")
+    bodyPath = os.path.join(pathName, key.upper() + "_CP.txt")
 
     with open(bodyPath, "w") as wBodyFile:
         for item in combinedContent[key]:
