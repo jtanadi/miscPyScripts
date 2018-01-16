@@ -61,17 +61,13 @@ def makeFolder(folder):
 combinedContent = combineCaptions()
 
 for key in combinedContent:
-
-    
     body = combinedContent[key]
 
     pathName = makeFolderName(key)
     makeFolder(str(pathName))
 
-    
     bodyPath = os.path.join(pathName, key.upper() + ".txt")
 
-    
     with open(bodyPath, "w") as wBodyFile:
         for item in body:
             wBodyFile.write(item)
