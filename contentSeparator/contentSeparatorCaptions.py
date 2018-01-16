@@ -12,7 +12,9 @@ inputTextList = [text for text in inputTextList if text != "\n"]
 codeIndex = [index for index, entry in enumerate(inputTextList) if "_" in entry]
 codeIndex.append(len(inputTextList))
 
-contentDict = {inputTextList[codeIndex[i]].replace("\n", "").split(" ")[0] : inputTextList[codeIndex[i]+2:codeIndex[i+1]] for i in range(len(codeIndex)-1)}
+contentDict = {inputTextList[codeIndex[i]].replace("\n", "").split(" ")[0] :\
+               inputTextList[codeIndex[i]+2:codeIndex[i+1]] for i in range(len(codeIndex)-1)}
+
 contentDict = OrderedDict(sorted(contentDict.items()))
 
 def combineCaptions():
