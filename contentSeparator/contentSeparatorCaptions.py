@@ -33,6 +33,7 @@ def combineCaptions():
 
         # Check if we're still in the same exhibitTopic
         # If so, insert the contents of that key and the previous key to newContentDict
+        # *** THIS NEEDS TO BE EDITED TO ACCOMMODATE CAPTIONS WITH MORE THAN 2 VALUES ***
         if exhibitTopic in code:
             newContentDict[exhibitTopic] = contentDict[code] + contentDict[codeMemory]
 
