@@ -51,9 +51,14 @@ for key in contentDict:
     fileNum = 1
 
     for i in range(0, len(contentDict[key]), 2):
-        filePath = os.path.join(pathName, key.upper() + "-" + str(fileNum) + ".txt")
 
-        with open(filePath, "w") as wFile:
-            wFile.write(contentDict[key][i] + contentDict[key][i+1])
+        textPath = os.path.join(pathName, key.upper() + "-" + str(fileNum) + "T.txt")
+        datePath = os.path.join(pathName, key.upper() + "-" + str(fileNum) + "D.txt")
+
+        with open(textPath, "w") as wTextFile:
+            wTextFile.write(contentDict[key][i])
+
+        with open(datePath, "w") as wDateFile:
+            wDateFile.write(contentDict[key][i + 1])
 
         fileNum += 1
