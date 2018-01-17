@@ -46,9 +46,12 @@ for key in contentDict:
 
     pathName = makeFolderName(key)
     makeFolder(str(pathName))
+    fileNum = 1
 
     for i in range(0, len(contentDict[key]), 2):
-        filePath = os.path.join(pathName, key.upper() + "-" + str(i + 1) + ".txt")
+        filePath = os.path.join(pathName, key.upper() + "-" + str(fileNum) + ".txt")
 
         with open(filePath, "w") as wFile:
             wFile.write(contentDict[key][i] + contentDict[key][i+1])
+
+        fileNum += 1
