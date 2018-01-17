@@ -51,13 +51,14 @@ for key in contentDict:
     fileNum = 1
 
     for i in range(0, len(contentDict[key]), 2):
-
+        # Separate paths for text entry & date entry
         textPath = os.path.join(pathName, key.upper() + "-" + str(fileNum) + "T.txt")
         datePath = os.path.join(pathName, key.upper() + "-" + str(fileNum) + "D.txt")
 
         with open(textPath, "w") as wTextFile:
             wTextFile.write(contentDict[key][i])
 
+        # Date entry is always the next index
         with open(datePath, "w") as wDateFile:
             wDateFile.write(contentDict[key][i + 1])
 
