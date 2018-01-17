@@ -46,6 +46,8 @@ for key in contentDict:
 
     pathName = makeFolderName(key)
     makeFolder(str(pathName))
+
+    # Need files to be numbered consecutively, but for loop below has step of 2...
     fileNum = 1
 
     for i in range(0, len(contentDict[key]), 2):
