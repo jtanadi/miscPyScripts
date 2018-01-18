@@ -44,6 +44,9 @@ def makeFolder(folder):
 
 for key in contentDict:
 
+    # Add "[star] " to the beginning of vet entries
+    contentDict[key] = ["[star] " + entry if entry.endswith("[vet]\n") else entry for entry in contentDict[key]]
+
     pathName = makeFolderName(key)
     makeFolder(str(pathName))
 
@@ -55,11 +58,11 @@ for key in contentDict:
         textPath = os.path.join(pathName, key.upper() + "-" + str(fileNum) + "T.txt")
         datePath = os.path.join(pathName, key.upper() + "-" + str(fileNum) + "D.txt")
 
-        with open(textPath, "w") as wTextFile:
-            wTextFile.write(contentDict[key][i])
+        # with open(textPath, "w") as wTextFile:
+        #     wTextFile.write(contentDict[key][i])
 
-        # Date entry is always the next index
-        with open(datePath, "w") as wDateFile:
-            wDateFile.write(contentDict[key][i + 1])
+        # # Date entry is always the next index
+        # with open(datePath, "w") as wDateFile:
+        #     wDateFile.write(contentDict[key][i + 1])
 
         fileNum += 1
