@@ -44,8 +44,8 @@ def makeFolder(folder):
 
 for key in contentDict:
 
-    # Add "[star] " to the beginning of vet entries
-    contentDict[key] = ["[star] " + entry if entry.endswith("[vet]\n") else entry for entry in contentDict[key]]
+    # Add a star to the beginning of vet entries ("A" in stars font)
+    contentDict[key] = ["A " + entry if entry.endswith("[vet]\n") else entry for entry in contentDict[key]]
 
     pathName = makeFolderName(key)
     makeFolder(str(pathName))
